@@ -1,6 +1,6 @@
 import Foundation
 
-struct NewsItem: Identifiable {
+struct NewsItem: Identifiable, Codable {
     let id: String
     let title: String
     let date: String

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct NewsCategory: Identifiable {
-    let id = UUID()
+struct NewsCategory: Identifiable, Codable {
+    var id = UUID()
     let name: String
     let iconName: String
 }
