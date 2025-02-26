@@ -5,9 +5,11 @@ name: Swift
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - "*"
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - "*"
 
 jobs:
   build:
@@ -15,8 +17,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - uses: actions/checkout@v4
+      - name: Get current branch
+        id: get_branch
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Print Branch Name
+        run: echo "Building on branch: $BRANCH_NAME"
+      - name: Build
+        run: swift build -v
+      - name: Run tests
+        run: swift test -v
