@@ -1,15 +1,14 @@
-# This workflow will build a Swift project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+# This workflow will build a Swift project dynamically based on the current branch
 
 name: Swift
 
 on:
   push:
     branches:
-      - "**"
+      - "**"  # Matches all branches
   pull_request:
     branches:
-      - "**"
+      - "**"  # Triggers on PRs to any branch
 
 jobs:
   build:
@@ -17,13 +16,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Get current branch
-        id: get_branch
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-      - name: Print Branch Name
-        run: echo 'Building on branch: $BRANCH_NAME'
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Build
         run: swift build -v
+        
       - name: Run tests
         run: swift test -v
