@@ -1,7 +1,7 @@
 import Foundation
 
 struct NewsItem: Identifiable {
-    let id = UUID()
+    let id: String
     let title: String
     let date: String
     let description: String
@@ -9,6 +9,17 @@ struct NewsItem: Identifiable {
     let newsImageUrls: [String]
     let publishedDate: String
     let newsBody: String
+    
+    init(id: String? = nil, title: String, date: String, description: String, author: String, newsImageUrls: [String], publishedDate: String, newsBody: String) {
+        self.id = id ?? UUID().uuidString
+        self.title = title
+        self.date = date
+        self.description = description
+        self.author = author
+        self.newsImageUrls = newsImageUrls
+        self.publishedDate = publishedDate
+        self.newsBody = newsBody
+    }
 }
 
 extension NewsItem {
@@ -36,6 +47,8 @@ extension NewsItem {
     ]
     
     static let dummyNewsItem = NewsItem(title: "Breaking News: Market Hits Record Highs", date: "March 1, 2025", description: "The stock market reached an all-time high today, with major indices showing significant gains.", author: "John Doe", newsImageUrls: generateRandomImageUrls(), publishedDate: "March 1, 2025", newsBody: generateRandomNewsBody())
+    
+    static let dummyHeadlineNews: NewsItem = NewsItem(id: "12345", title: "Breaking News: Market Hits Record Highs", date: "March 1, 2025", description: "The stock market reached an all-time high today, with major indices showing significant gains.", author: "John Doe", newsImageUrls: generateRandomImageUrls(), publishedDate: "March 1, 2025", newsBody: generateRandomNewsBody())
     
     static let dummySearchResults: [NewsItem] = [
         NewsItem(title: "Search Result 1", date: "March 1, 2025", description: "Description for search result 1", author: "Jane Smith", newsImageUrls: generateRandomImageUrls(), publishedDate: "March 1, 2025", newsBody: generateRandomNewsBody()),

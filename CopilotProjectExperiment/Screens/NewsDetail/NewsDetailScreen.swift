@@ -7,7 +7,8 @@
 import SwiftUI
 
 struct NewsDetailScreen: View {
-    var newsItem: NewsItem = .dummyNewsItem
+    @State var newsItem: NewsItem
+    var nameSpace: Namespace.ID
 
     var body: some View {
         ScrollView {
@@ -39,7 +40,7 @@ struct NewsDetailScreen: View {
                 HStack {
                     Text("By \(newsItem.author)")
                     Spacer()
-                    Text("newsItem.publishedDate")
+                    Text(newsItem.publishedDate)
                 }
                 .font(.subheadline)
                 .foregroundColor(.secondary)
@@ -56,7 +57,7 @@ struct NewsDetailScreen: View {
                     .padding(.horizontal)
 
                 ForEach(NewsItem.dummyRelatedNews) { suggestion in
-                    NavigationLink(destination: NewsDetailScreen(newsItem: suggestion)) {
+                    NavigationLink(destination: NewsDetailScreen(newsItem: suggestion, nameSpace: nameSpace)) {
                         NewsListItemView(newsItem: suggestion)
                             .padding(.horizontal)
                     }
@@ -69,7 +70,8 @@ struct NewsDetailScreen: View {
 }
 
 #Preview {
+    @Previewable @Namespace var nameSpace
     NavigationView {
-        NewsDetailScreen(newsItem: NewsItem.dummyNewsItem)
+        NewsDetailScreen(newsItem: NewsItem.dummyNewsItem, nameSpace: nameSpace)
     }
 }
