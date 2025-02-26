@@ -7,9 +7,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var headlineNews = NewsItem.dummyHeadlineNews
-    @State var newsCategory = NewsCategory.dummyNewsCategoryList
-    @State var latestNews = NewsItem.dummyNewsList
+    @EnvironmentObject var model: HomeModel
     @Namespace private var navigationZoomStyle
     
     var body: some View {
@@ -19,17 +17,19 @@ struct HomeView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
                         // Headline Section
-                        Text("Headline")
-                            .font(.headline)
-                            .padding(.horizontal)
-                        NavigationLink(destination: NewsDetailScreen(newsItem: headlineNews, nameSpace: navigationZoomStyle)
-                        ) {
-                            HeadlineNewsView(
-                                imageUrl: URL(string: headlineNews.newsImageUrls.first ?? "")!,
-                                title: headlineNews.title,
-                                subtitle: headlineNews.description,
-                                publishedDate: headlineNews.publishedDate
-                            )
+                        if let headlineNews = model.headlineNews {
+                            Text("Headline")
+                                .font(.headline)
+                                .padding(.horizontal)
+                            NavigationLink(destination: NewsDetailScreen(newsItem: headlineNews, nameSpace: navigationZoomStyle)
+                            ) {
+                                HeadlineNewsView(
+                                    imageUrl: URL(string: headlineNews.newsImageUrls.first ?? "")!,
+                                    title: headlineNews.title,
+                                    subtitle: headlineNews.description,
+                                    publishedDate: headlineNews.publishedDate
+                                )
+                            }
                         }
 
                         // Category Section
@@ -38,7 +38,7 @@ struct HomeView: View {
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 8) {
-                                ForEach(newsCategory) { category in
+                                ForEach(model.newsCategories) { category in
                                     CategoryChipView(category: category)
                                 }
                             }
@@ -49,7 +49,7 @@ struct HomeView: View {
                         Text("Latest News")
                             .font(.headline)
                             .padding(.horizontal)
-                        ForEach(latestNews) { newsItem in
+                        ForEach(model.newsItems) { newsItem in
                             NavigationLink(destination: NewsDetailScreen(newsItem: newsItem, nameSpace: navigationZoomStyle)) {
                                 NewsListItemView(newsItem: newsItem)
                                     .padding(.horizontal)
@@ -65,10 +65,17 @@ struct HomeView: View {
             .navigationBarItems(trailing: NavigationLink(destination: SearchNewsScreen()) {
                 Image(systemName: "magnifyingglass")
             })
+            .task {
+                await model.fetchNews()
+                await model.fetchNewsSources()
+                await model.fetchHeadlineNews()
+                model.fetchNewsCategories()
+            }
         }
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(HomeModel(repository: NewsRepositoryImpl()))
 }

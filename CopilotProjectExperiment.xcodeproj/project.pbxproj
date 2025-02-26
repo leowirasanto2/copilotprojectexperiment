@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		60EF195E2D6F808300D68262 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 60EF195D2D6F808300D68262 /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		605B5A762D68D8B200501852 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +31,25 @@
 		605B5A652D68D8B100501852 /* CopilotProjectExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CopilotProjectExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		605B5A752D68D8B200501852 /* CopilotProjectExperimentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CopilotProjectExperimentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		605B5A7F2D68D8B200501852 /* CopilotProjectExperimentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CopilotProjectExperimentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60EF195D2D6F808300D68262 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		60EF19602D6F80F600D68262 /* Exceptions for "CopilotProjectExperiment" folder in "CopilotProjectExperiment" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 605B5A642D68D8B100501852 /* CopilotProjectExperiment */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		605B5A672D68D8B100501852 /* CopilotProjectExperiment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60EF19602D6F80F600D68262 /* Exceptions for "CopilotProjectExperiment" folder in "CopilotProjectExperiment" target */,
+			);
 			path = CopilotProjectExperiment;
 			sourceTree = "<group>";
 		};
@@ -75,6 +93,7 @@
 		605B5A5C2D68D8B100501852 = {
 			isa = PBXGroup;
 			children = (
+				60EF195D2D6F808300D68262 /* Config.xcconfig */,
 				605B5A672D68D8B100501852 /* CopilotProjectExperiment */,
 				605B5A782D68D8B200501852 /* CopilotProjectExperimentTests */,
 				605B5A822D68D8B200501852 /* CopilotProjectExperimentUITests */,
@@ -212,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EF195E2D6F808300D68262 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +291,7 @@
 /* Begin XCBuildConfiguration section */
 		605B5A872D68D8B200501852 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60EF195D2D6F808300D68262 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -334,6 +355,7 @@
 		};
 		605B5A882D68D8B200501852 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60EF195D2D6F808300D68262 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -399,6 +421,7 @@
 				DEVELOPMENT_TEAM = NUP9G5V5V5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CopilotProjectExperiment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +451,7 @@
 				DEVELOPMENT_TEAM = NUP9G5V5V5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CopilotProjectExperiment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

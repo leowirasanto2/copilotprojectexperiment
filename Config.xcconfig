@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  CopilotProjectExperiment
+//
+//  Created by Leo Wirasanto Laia on 27/02/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = 283968034fbc4db691fd4115a1e2daec
+BASE_URL = newsapi.org/v2
