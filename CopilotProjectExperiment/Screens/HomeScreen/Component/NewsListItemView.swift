@@ -33,6 +33,7 @@ struct NewsListItemView: View {
                 Text(newsItem.description)
                     .font(.subheadline)
                     .lineLimit(3)
+                    .multilineTextAlignment(.leading)
             }
         }
     }

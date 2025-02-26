@@ -7,6 +7,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var headlineNews = NewsItem.dummyHeadlineNews
+    @State var newsCategory = NewsCategory.dummyNewsCategoryList
+    @State var latestNews = NewsItem.dummyNewsList
+    @Namespace private var navigationZoomStyle
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -17,12 +22,13 @@ struct HomeView: View {
                         Text("Headline")
                             .font(.headline)
                             .padding(.horizontal)
-                        NavigationLink(destination: NewsDetailScreen(newsItem: NewsItem.dummyNewsItem)) {
+                        NavigationLink(destination: NewsDetailScreen(newsItem: headlineNews, nameSpace: navigationZoomStyle)
+                        ) {
                             HeadlineNewsView(
-                                imageUrl: URL(string: "https://picsum.photos/200/300")!,
-                                title: "Sample Title",
-                                subtitle: "Sample Subtitle",
-                                publishedDate: "Feb 22, 2025"
+                                imageUrl: URL(string: headlineNews.newsImageUrls.first ?? "")!,
+                                title: headlineNews.title,
+                                subtitle: headlineNews.description,
+                                publishedDate: headlineNews.publishedDate
                             )
                         }
 
@@ -32,7 +38,7 @@ struct HomeView: View {
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 8) {
-                                ForEach(NewsCategory.dummyNewsCategoryList) { category in
+                                ForEach(newsCategory) { category in
                                     CategoryChipView(category: category)
                                 }
                             }
@@ -43,11 +49,12 @@ struct HomeView: View {
                         Text("Latest News")
                             .font(.headline)
                             .padding(.horizontal)
-                        ForEach(NewsItem.dummyNewsList) { newsItem in
-                            NavigationLink(destination: NewsDetailScreen(newsItem: newsItem)) {
+                        ForEach(latestNews) { newsItem in
+                            NavigationLink(destination: NewsDetailScreen(newsItem: newsItem, nameSpace: navigationZoomStyle)) {
                                 NewsListItemView(newsItem: newsItem)
                                     .padding(.horizontal)
                             }
+                            .foregroundStyle(.primary)
                         }
                     }
                 }

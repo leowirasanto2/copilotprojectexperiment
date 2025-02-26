@@ -21,7 +21,8 @@ struct HeadlineNewsView: View {
                     .frame(height: 200)
                     .clipped()
             } placeholder: {
-                ProgressView()
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.gray.opacity(0.2))
                     .frame(height: 200)
             }
             .cornerRadius(10)
@@ -38,9 +39,10 @@ struct HeadlineNewsView: View {
                     .font(.caption)
                     .foregroundColor(.white)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(Color.black.opacity(0.6))
-            .cornerRadius(10)
+            .clipShape(UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: 10, bottomTrailing: 10)))
             .padding(.horizontal)
         }
     }
